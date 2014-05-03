@@ -1,0 +1,8 @@
+{
+	"name": "extragalactic",
+	"version": "0.0.1",
+	"author": "Alex Solo <alex.n.solo@gmail.com>",
+	"dependencies": {
+		"prompt": "0.2.x"
+	}
+}
