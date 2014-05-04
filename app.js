@@ -1,17 +1,17 @@
-function out(message) {
-	console.log(message);
-};
+var commands = require('./commands/index.js');
+var common = require('./common.js');
 
-function doCommand(command) {
-	if (command == 'begin') {
-		out('Hello space.');
-	}
-	else if (command == 'exit') {
-		out('Goodbye space.');
+function doCommand(input) {
+	if (input == 'exit') {
+		common.out('Good-bye space.');
 		return;
 	}
-	else {
-		out('An echo rings out: ' + command);
+
+	for (var i=0;i<commands.list.length;i++) {
+		if (commands.list[i].applies(input)) {
+			commands.list[i].execute(input);
+			break;	
+		}
 	}
 
 	// ad infinitum
@@ -21,6 +21,7 @@ function doCommand(command) {
 		}
 	);
 };
+
 
 var prompt = require('prompt');
 prompt.start();
