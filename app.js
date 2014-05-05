@@ -1,18 +1,23 @@
-var commands = require('./commands/index.js');
+var commands = require('./commands/index.js').list;
 var common = require('./common.js');
+var game = require('./game/game.js').main;
 
 function doCommand(input) {
+	common.out('');
+
 	if (input == 'exit') {
 		common.out('Good-bye space.');
 		return;
 	}
 
-	for (var i=0;i<commands.list.length;i++) {
-		if (commands.list[i].applies(input)) {
-			commands.list[i].execute(input);
+	for (var i=0;i<commands.length;i++) {
+		if (commands[i].applies(input, game)) {
+			commands[i].execute(input, game);
 			break;	
 		}
 	}
+
+	common.out('');
 
 	// ad infinitum
 	prompt.get([{name: 'command', message: '>'.green}], 

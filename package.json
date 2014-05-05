@@ -3,6 +3,9 @@
 	"version": "0.0.1",
 	"author": "Alex Solo <alex.n.solo@gmail.com>",
 	"dependencies": {
-		"prompt": "0.2.x"
+		"prompt": "0.2.x",
+		"underscore-node": "0.1.x",
+		"colors": "0.6.2",
+		"string": "1.8.x"
 	}
 }
