@@ -1,24 +1,35 @@
-var EXTENTS = ['Millenium', 'Dawn', 'Star', 'Galaxy', 'Nebula', 'Horizon', 'Infinity', 'Cosmos'];
-var DESCRIPTOR_NOUNS = ['Death', 'Speed', 'Gypsy', 'Dawn', 'Doom', 'Warp', 'Danger', 'Quicksilver'];
-var SHIP_NOUNS = ['Falcon', 'Lion', 'Lady', 'Bullet', 'Runner', 'Kestrel', 'Gypsy', 'Wing', 'Racer', 'Pheonix', 'Comet', 'Luck', 'Voyager', 'Wasp', 'Vector', 'Dasher', 'Sword', 'Warden', 'Beacon', 'Raider'];
+var SPACE_NOUNS = ['Comet', 'Dawn', 'Galaxy', 'Horizon', 'Nebula', 'Nova', 'Star', 'Sun'];
+var ABSTRACT_NOUNS = ['Blessing', 'Danger', 'Dawn', 'Death', 'Destiny', 'Doom',  'Hope', 'Light', 'Luck'];
+var ASPECTS = ['Endurance', 'Speed', 'Strength', 'Guile', 'Wisdom'];
+
+var ANIMALS = ['Dragon', 'Falcon', 'Fox', 'Griffen', 'Lion', 'Pheonix'];
+var OTHER_NOUNS = ['Lady', 'Bullet', 'Runner', 'Ranger', 'Gypsy', 'Wing', 'Racer', 'Voyager', 'Wasp', 'Vector', 'Dasher', 'Sword', 'Warden', 'Beacon', 'Raider'];
 
 function random(list) {
-	var i = Math.floor(Math.random() * list.length);
-	return list[i];
+	return function() {
+		var i = Math.floor(Math.random() * list.length);
+		return list[i];
+	}
 }
 
-function newRandom(existing, list) {
-	var found = true;
-	var newWord = '';
-	while (found) {
-		newWord = random(list);
-		
-		found = false;
-		for (var i = 0; i<existing.length; ++i)
-			found |= newWord == existing[i];
+function grammar(funs) {
+	return function() {
+		var str = '';
+		for (var i = 0; i<funs.length-1; ++i)
+			str += funs[i]() + ' ';;
+		str += funs[funs.length-1]();
+		return str;
 	}
-	
-	return newWord;
+}
+
+function possessive(list) {
+	var f = random(list);
+	return function() {
+		var string = f();
+		if (string.charAt(string.length-1) == 's')
+			return string + '\'';
+		return string + '\'s';
+	}
 }
 
 function composite(funs, probs) {
@@ -33,25 +44,9 @@ function composite(funs, probs) {
 		return funs[funs.length - 1]();
 	}
 }
+var milleniumFalcon = grammar([random(SPACE_NOUNS), random(ANIMALS)]);
+var doomFalcon = grammar([random(ABSTRACT_NOUNS), random(ANIMALS)]);
+var cometsBlessing = grammar([possessive(SPACE_NOUNS), random(ABSTRACT_NOUNS)]);
+var falconsGuile = grammar([possessive(ANIMALS), random(ASPECTS)]);
 
-var milleniumFalcon = function() {
-	var extent = random(EXTENTS);
-	return extent + ' ' + newRandom([extent], SHIP_NOUNS);
-}
-
-var doomFalcon = function() {
-	var descriptor = random(DESCRIPTOR_NOUNS); 
-	return descriptor + ' ' + newRandom([descriptor], SHIP_NOUNS);
-}
-
-var falconsLuck = function() {
-	var possessive = random(SHIP_NOUNS);
-	return possessive + '\'s ' + newRandom([possessive], SHIP_NOUNS);
-}
-
-var gypsyDanger = function() {
-	var noun = random(DESCRIPTOR_NOUNS);
-	return noun + '-' + newRandom([noun], DESCRIPTOR_NOUNS);
-}
-
-exports.shipName = composite([milleniumFalcon, doomFalcon, falconsLuck, gypsyDanger], [0.55, 0.25, 0.10]);
+exports.shipName = composite([milleniumFalcon, doomFalcon, cometsBlessing, falconsGuile], [0.55, 0.25, 0.10]);
