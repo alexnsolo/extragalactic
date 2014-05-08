@@ -1,6 +1,6 @@
-var extent = ["Millenium", "Dawn", "Star", "Galaxy", "Nebula", "Horizon", "Infinity"];
+var extent = ["Millenium", "Dawn", "Star", "Galaxy", "Nebula", "Horizon", "Infinity", "Cosmos"];
 var descriptorNoun = ["Death", "Speed", "Gypsy", "Dawn", "Doom", "Warp", "Danger", "Quicksilver"];
-var shipNoun = ["Falcon", "Lion", "Lady", "Bullet", "Runner", "Kestrel", "Gypsy", "Wing", "Racer", "Pheonix", "Comet", "Luck", "Voyager", "Wasp", "Vector", "Dasher"];
+var shipNoun = ["Falcon", "Lion", "Lady", "Bullet", "Runner", "Kestrel", "Gypsy", "Wing", "Racer", "Pheonix", "Comet", "Luck", "Voyager", "Wasp", "Vector", "Dasher", "Sword", "Warden", "Beacon", "Raider"];
 
 function random(list) {
 	var i = Math.floor(Math.random() * list.length);
@@ -8,7 +8,17 @@ function random(list) {
 }
 
 function newRandom(existing, list) {
+	var found = true;
+	var newWord = "";
+	while (found) {
+		newWord = random(list);
+		
+		found = false;
+		for (var i = 0; i<existing.length; ++i)
+			found |= newWord == existing[i];
+	}
 	
+	return newWord;
 }
 
 function composite(funs, probs) {
@@ -33,15 +43,13 @@ var doomFalcon = function() {
 }
 
 var falconsLuck = function() {
-	return random(shipNoun) + "'s " + random(shipNoun);
+	var possessive = random(shipNoun);
+	return possessive + "'s " + newRandom([possessive], shipNoun);
 }
 
 var gypsyDanger = function() {
-	return random(descriptorNoun) + "-" + random(descriptorNoun);
+	var noun = random(descriptorNoun);
+	return noun + "-" + newRandom([noun], descriptorNoun);
 }
 
-var lionsWing = function() {
-	return random(shipNoun) + "'s " + random(shipNoun);
-}
-
-exports.shipName = composite([milleniumFalcon, doomFalcon, falconsLuck, gypsyDanger, lionsWing], [0.55, 0.10, 0.10, 0.5]);
+exports.shipName = composite([milleniumFalcon, doomFalcon, falconsLuck, gypsyDanger], [0.55, 0.25, 0.10]);
