@@ -1,7 +1,10 @@
+
+var generator = require('../generation/generator.js');
+
 exports.main = {
 	player: {
 		ship: {
-			name: 'Kestrel',
+			name: generator.shipName(),
 			description: 'A small transport vessel from the age of The Fourth Insurrection. Boasts a spacious cargo hold and light armor.',
 			health: 1450,
 			maxHealth: 1450,
