@@ -1,7 +1,9 @@
 
 var generator = require('../generation/generator.js');
+var timeModule = require('../time/time.js');
 
 exports.main = {
+	time: timeModule.time,
 	player: {
 		ship: {
 			name: generator.shipName(),
