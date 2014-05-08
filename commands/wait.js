@@ -1,10 +1,14 @@
 var timeCommand = require('./timeCommand.js');
 
 exports.applies = function(input, game) {
-	return (input == 'wait');
+	var words = input.split(' ');
+	return (words.length == 3 
+			&& words[0] == 'wait')
+			&& (words[2] == 'hours' || words[2] == 'hrs');
 };
 
 exports.execute = function(input, game) {
-	game.time.waitHours(1);
+	var hours = parseInt(input.split(' ')[1]);
+	game.time.waitHours(hours);
 	timeCommand.execute(input, game);
 };
