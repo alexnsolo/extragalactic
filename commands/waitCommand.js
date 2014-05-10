@@ -1,5 +1,4 @@
 var context = require('./commandContext.js').main;
-var timeCommand = require('./timeCommand.js');
 
 exports.applies = function(input, game) {
 	if (!context.includes('main')) return false;
@@ -13,5 +12,5 @@ exports.applies = function(input, game) {
 exports.execute = function(input, game) {
 	var hours = parseInt(input.split(' ')[1]);
 	game.time.waitHours(hours);
-	timeCommand.execute(input, game);
+	common.out('The time is ' + game.time.currentTime());
 };
