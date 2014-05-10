@@ -34,5 +34,6 @@ exports.main = {
 				},
 			]
 		}
-	}
+	},
+	context: 'init'
 };

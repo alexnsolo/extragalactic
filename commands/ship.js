@@ -1,3 +1,4 @@
+var context = require('./commandContext.js');
 var common = require('./../common.js');
 var _ = require('underscore-node');
 var colors = require('colors');
@@ -18,6 +19,7 @@ function describeShip(ship) {
 }
 
 exports.applies = function(input, game) {
+	if (!context.includes('main')) return false;
 	return (input == 'ship');
 };
 
