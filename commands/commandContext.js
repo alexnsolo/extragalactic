@@ -10,4 +10,4 @@ function CommandContext() {
 	};
 }
 
-module.exports = new CommandContext();
+exports.main = new CommandContext();

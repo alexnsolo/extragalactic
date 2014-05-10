@@ -1,4 +1,4 @@
-exports.list = [
+var commands = [
 	require('./begin.js'),
 	require('./ship.js'),
 	require('./timeCommand.js'),
@@ -6,3 +6,5 @@ exports.list = [
 	
 	require('./default.js')
 ];
+
+module.exports.main = commands;

@@ -1,4 +1,4 @@
-var context = require('./commandContext.js');
+var context = require('./commandContext.js').main;
 var timeCommand = require('./timeCommand.js');
 
 exports.applies = function(input, game) {

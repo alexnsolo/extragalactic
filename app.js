@@ -1,4 +1,4 @@
-var commands = require('./commands/index.js').list;
+var commands = require('./commands/index.js').main;
 var common = require('./common.js');
 var game = require('./game/game.js').main;
 
