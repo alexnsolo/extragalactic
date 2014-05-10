@@ -25,7 +25,7 @@ function doCommand(input) {
 
 	// ad infinitum
 	getCommand();
-};
+}
 
 function getCommand() {
 	prompt.get([{name: 'command', message: '>'.green}], 
