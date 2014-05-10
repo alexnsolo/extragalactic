@@ -1,10 +1,10 @@
 var commands = [
-	require('./begin.js'),
-	require('./ship.js'),
+	require('./beginCommand.js'),
+	require('./shipCommand.js'),
 	require('./timeCommand.js'),
-	require('./wait.js'),
+	require('./waitCommand.js'),
 	
-	require('./default.js')
+	require('./defaultCommand.js')
 ];
 
 module.exports.main = commands;

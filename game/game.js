@@ -1,12 +1,11 @@
-
-var generator = require('../generation/generator.js');
+var shipNameGenerator = require('../generation/shipNameGenerator.js');
 var timeModule = require('../time/time.js');
 
 exports.main = {
 	time: timeModule.time,
 	player: {
 		ship: {
-			name: generator.shipName(),
+			name: shipNameGenerator.shipName(),
 			description: 'A small transport vessel from the age of The Fourth Insurrection. Boasts a spacious cargo hold and light armor.',
 			health: 1450,
 			maxHealth: 1450,
