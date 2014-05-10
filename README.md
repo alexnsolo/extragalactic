@@ -11,4 +11,7 @@ A text adventure space sim.
 ####Setup
 
 1. `npm install`
+
+####Run
+
 1. `node src\app.js`
