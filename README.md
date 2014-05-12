@@ -3,5 +3,15 @@ extragalactic
 
 A text adventure space sim.
 
+
+####Dependencies
+
+* http://nodejs.org/
+
+####Setup
+
 1. `npm install`
-1. `node app.js`
+
+####Run
+
+1. `node src\app.js`
