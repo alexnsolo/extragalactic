@@ -31,3 +31,4 @@ exports.healthBar = function(thing) {
 	}
 	return healthBar;
 };
+
