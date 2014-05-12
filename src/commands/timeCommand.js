@@ -7,5 +7,5 @@ exports.applies = function(input, game) {
 };
 
 exports.execute = function(input, game) {
-	common.out('The time is ' + game.time.currentTime());
+	common.out('The time is ' + game.main.time.currentTime());
 };

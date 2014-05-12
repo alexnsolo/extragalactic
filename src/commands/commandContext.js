@@ -1,12 +1,12 @@
-var game = require('./../game/game.js').main;
+var game = require('./../game/game.js');
 
 function CommandContext() {
 	this.includes = function(contextName) {
-		return (game.context == contextName);
+		return (game.main.context == contextName);
 	};
 
 	this.switchTo = function(contextName) {
-		game.context = contextName;
+		game.main.context = contextName;
 	};
 }
 

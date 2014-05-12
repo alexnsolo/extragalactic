@@ -7,6 +7,7 @@ exports.applies = function(input, game) {
 };
 
 exports.execute = function(input, game) {
+    game.startNew();
 	context.switchTo('main');
 	common.out('Hello space.')
 };

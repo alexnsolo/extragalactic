@@ -1,6 +1,6 @@
 var commands = require('./commands/index.js').main;
 var common = require('./common.js');
-var game = require('./game/game.js').main;
+var game = require('./game/game.js');
 var menu = require('./interfaces/menu.js');
 var context = require('./commands/commandContext.js').main;
 var _ = require('underscore-node');

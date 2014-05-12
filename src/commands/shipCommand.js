@@ -24,5 +24,5 @@ exports.applies = function(input, game) {
 };
 
 exports.execute = function(input, game) {
-	describeShip(game.player.ship);
+	describeShip(game.main.player.ship);
 };

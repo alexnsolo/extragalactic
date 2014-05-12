@@ -12,6 +12,6 @@ exports.applies = function(input, game) {
 
 exports.execute = function(input, game) {
 	var hours = parseInt(input.split(' ')[1]);
-	game.time.waitHours(hours);
-	common.out('The time is ' + game.time.currentTime());
+	game.main.time.waitHours(hours);
+	common.out('The time is ' + game.main.time.currentTime());
 };
