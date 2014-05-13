@@ -1,6 +1,6 @@
-var context = require('./commandContext.js').main;
-var common = require('./../common.js');
-var time = require('./../time/time.js');
+var context = 	require('./../commandContext.js').main;
+var common =	require('./../../common.js');
+var time = 		require('./../../time/time.js');
 
 exports.applies = function(input, game) {
 	if (!context.includes('main')) return false;

@@ -29,7 +29,8 @@ function doCommand(input) {
 }
 
 function getCommand() {
-	prompt.get([{name: 'command', message: '>'.green}], 
+	var contextName = game.main.context;
+	prompt.get([{name: 'command', message: contextName + ' >'.green}], 
 		function(err, result) {
 			doCommand(result.command);
 		}

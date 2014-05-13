@@ -50,8 +50,8 @@ exports.startNew = function() {
 	exports.main = newGame;
 };
 
-exports.save = function() {
-	fs.writeFile('saved-game.json', JSON.stringify(exports.main), 'utf8');	
+exports.save = function(callback) {
+	fs.writeFile('saved-game.json', JSON.stringify(exports.main), 'utf8', callback);	
 };
 
 exports.load = function() {

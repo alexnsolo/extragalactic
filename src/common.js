@@ -29,6 +29,6 @@ exports.healthBar = function(thing) {
 	else {
 		healthBar = ' disabled '.red;
 	}
-	return healthBar;
+	return '[' + healthBar + ']';
 };
 
