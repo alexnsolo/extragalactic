@@ -1,6 +1,7 @@
 var shipNameGenerator = require('../generation/shipNameGenerator.js');
-var timeModule = require('../time/time.js');
+var common = require('../common.js');
 var _ = require('underscore-node');
+var fs = require('fs');
 
 exports.main = {
 	context: 'init'
@@ -8,7 +9,6 @@ exports.main = {
 
 exports.startNew = function() {
 	var newGame = {
-		time: timeModule.time,
 		player: {
 			ship: {
 				name: shipNameGenerator.shipName(),
@@ -40,8 +40,27 @@ exports.startNew = function() {
 				]
 			}
 		},
+		time: {
+			ticks: Math.floor(Math.random()*2000),
+			eventQueue: [],
+		},
 		context: 'init'
 	};
 
 	exports.main = newGame;
+};
+
+exports.save = function() {
+	fs.writeFile('saved-game.json', JSON.stringify(exports.main), 'utf8');	
+};
+
+exports.load = function() {
+	fs.readFile('saved-game.json', 'utf8', function(err, data) {
+		if (err) {
+			common.out('Could not load game: ' + err.message);
+		}
+		else {
+			exports.main = JSON.parse(data);
+		}
+	});
 };

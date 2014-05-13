@@ -8,6 +8,7 @@ exports.applies = function(input, game) {
 };
 
 exports.execute = function(input, game) {
+	game.save();
 	context.switchTo('menu');
 	menu.show();
 };

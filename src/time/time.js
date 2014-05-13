@@ -1,58 +1,57 @@
 var common = require('../common.js');
-exports.time = {
-	_ticks: Math.floor(Math.random()*2000),
+var game = require('../game/game.js');
 
-	_eventQueue: [],
-	
-	currentTime: function() {
-		return this.formatTime(this._ticks);
-	},
-	
-	formatTime: function(ticks) {
-		var minutes = ticks * 15;
-		var thousands = Math.floor(minutes / 1000);
-		var remainder = minutes % 1000;
-		return thousands + ":" + remainder + " After Aegon's Landing";
-	},
 
-	addEvent: function(event, ticksFromNow) {
-		var occurs = this._ticks + ticksFromNow;
-		var node = {event: event, occurs: occurs};
+exports.currentTime = function() {
+	return this.formatTime(game.main.time.ticks);
+};
+	
+exports.formatTime = function(ticks) {
+	var minutes = ticks * 15;
+	var thousands = Math.floor(minutes / 1000);
+	var remainder = minutes % 1000;
+	return thousands + ":" + remainder + " After Aegon's Landing";
+};
+
+exports.addEvent =function(event, ticksFromNow) {
+	var time = game.main.time;
+	var occurs = time.ticks + ticksFromNow;
+	var node = {event: event, occurs: occurs};
+	
+	if (time.eventQueue.length == 0) {
+		time.eventQueue.push(node);
+	} else {
+		var i = 0;
+		while (i<time.eventQueue.length && time.eventQueue[i].occurs < occurs)
+			++i;
 		
-		if (this._eventQueue.length == 0) {
-			this._eventQueue.push(node);
-		} else {
-			var i = 0;
-			while (i<this._eventQueue.length && this._eventQueue[i].occurs < occurs)
-				++i;
-			
-			this._eventQueue.splice(i, 0, node);
-		}
-	},
-	
-	waitHours: function(hours) {
-		var waitTicks = hours*4;
+		time.eventQueue.splice(i, 0, node);
+	}
+};
 
-		while (waitTicks > 0) {
-			if (this._eventQueue.length == 0) {
-				// No events waiting, simply pass the time
-				this._ticks += waitTicks;
-				break;
-			}
-			
-			// Check if the next event happens during the wait
-			var node = this._eventQueue[0];
-			var timeToEvent = node.occurs - this._ticks;
-			if (timeToEvent <= waitTicks) {
-				this._eventQueue.shift();
-				this._ticks += timeToEvent;
-				node.event.execute();
-				waitTicks -= timeToEvent;
-			} else {
-				// The event is still in the future, simply advance time
-				this._ticks += waitTicks
-				break;
-			}
+exports.waitHours =function(hours) {
+	var time = game.main.time;
+	var waitTicks = hours*4;
+
+	while (waitTicks > 0) {
+		if (time.eventQueue.length == 0) {
+			// No events waiting, simply pass the time
+			time.ticks += waitTicks;
+			break;
+		}
+		
+		// Check if the next event happens during the wait
+		var node = time.eventQueue[0];
+		var timeToEvent = node.occurs - time.ticks;
+		if (timeToEvent <= waitTicks) {
+			time.eventQueue.shift();
+			time.ticks += timeToEvent;
+			node.event.execute();
+			waitTicks -= timeToEvent;
+		} else {
+			// The event is still in the future, simply advance time
+			time.ticks += waitTicks
+			break;
 		}
 	}
-}
+};

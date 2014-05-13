@@ -1,12 +1,12 @@
 var context = require('./commandContext.js').main;
 var common = require('./../common.js');
-var time = require('./../time/time.js');
 
 exports.applies = function(input, game) {
-	if (!context.includes('main')) return false;
-	return (input == 'time');
+	if (!context.includes('menu')) return false;
+	return (input == 'load');
 };
 
 exports.execute = function(input, game) {
-	common.out('The time is ' + time.currentTime());
+    game.load();
+	common.out('Hello space.')
 };
