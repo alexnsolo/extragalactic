@@ -51,11 +51,11 @@ exports.startNew = function() {
 };
 
 exports.save = function(callback) {
-	fs.writeFile('saved-game.json', JSON.stringify(exports.main), 'utf8', callback);	
+	fs.writeFile('saves/saved-game.json', JSON.stringify(exports.main), 'utf8', callback);	
 };
 
 exports.load = function() {
-	fs.readFile('saved-game.json', 'utf8', function(err, data) {
+	fs.readFile('saves/saved-game.json', 'utf8', function(err, data) {
 		if (err) {
 			common.out('Could not load game: ' + err.message);
 		}
