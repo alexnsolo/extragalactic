@@ -1,5 +1,6 @@
 var shipNameGenerator = require('../generation/shipNameGenerator.js');
 var common = require('../common.js');
+var constants = require('../constants.js');
 var _ = require('underscore-node');
 var fs = require('fs');
 
@@ -38,7 +39,58 @@ exports.startNew = function() {
 						properties: [{cargoCapacity: 300}]	
 					},
 				]
-			}
+			},
+			nav: {
+				galaxyId: 0, 
+				regionId: 0,
+				systemId: 0,
+				placeId: 0
+			},
+		},
+		universe: { 
+			id: 0,
+			name: 'Dauntless',
+			galaxies: [
+				{
+					id: 0,
+					name: 'Heart',
+					regions: [
+						{
+							id: 0,
+							name: 'Federation',
+							systems: [
+								{
+									id: 0,
+									name: 'Alpha Centauri',
+									places: [
+										{
+											id: 0,
+											name: 'Asteroid field',
+											type: constants.placeType.ASTEROID_FIELD,
+											beacon: 'AC-6433',
+											coordinates: {x: 2045, y: 8572}
+										},
+										{
+											id: 1,
+											name: 'Rigel Kent Federation Hub',
+											type: constants.placeType.STATION,
+											beacon: 'AC-3887',
+											coordinates: {x: 7775, y: 1249}
+										},
+										{
+											id: 2,
+											name: 'Rigel Kent',
+											type: constants.placeType.PLANET,
+											beacon: 'AC-3926',
+											coordinates: {x: 7803, y: 2356}
+										}
+									]
+								}
+							]
+						}
+					]
+				}
+			]
 		},
 		time: {
 			ticks: Math.floor(Math.random()*2000),
