@@ -8,11 +8,7 @@ exports.applies = function(input, game) {
 };
 
 exports.execute = function(input, game) {
-	var location = navigation.getCurrentLocation();
-	var description = 'You are at ' + location.place.name + ' (nav beacon ' + location.place.beacon + '), ' +
-				  	  'in the ' + location.system.name + ' system, ' + 
-				      'which is in the ' + location.region.name + ' region ' + 
-				      'of the ' + location.galaxy.name + ' galaxy.';
+	var description = navigation.describeCurrentPosition();
 	common.out(description);
 	context.switchTo('nav');
 };

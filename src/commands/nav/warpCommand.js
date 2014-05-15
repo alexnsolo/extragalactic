@@ -24,7 +24,7 @@ exports.execute = function(input, game) {
 		common.out('The warp drive begins to hum in anticipation, as the ship ' + 
 				   'gives a brief shudder, followed by the groaning of metal. ' +
 				   'A bright flash fills your vision, then subsides as the ship exits warp. \n');
-		var newLocation = navigation.warpTo(destination);
-		common.out('You are now at ' + newLocation.name + ' (nav beacon ' + newLocation.beacon + ')');
+		var newPlace = navigation.warpTo(destination);
+		common.out('You are now at ' + newPlace.name + ' (nav beacon ' + newPlace.beacon + ')');
 	}
 };

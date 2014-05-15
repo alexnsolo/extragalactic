@@ -1,8 +1,13 @@
-var shipNameGenerator = require('../generation/shipNameGenerator.js');
-var common = require('../common.js');
-var constants = require('../constants.js');
-var _ = require('underscore-node');
-var fs = require('fs');
+var shipNameGenerator =		require('../generation/shipNameGenerator.js');
+var common = 				require('../common.js');
+var constants = 			require('../constants.js');
+var _ = 					require('underscore-node');
+var fs = 					require('fs');
+var eventsModule =			require('events');
+
+
+var events = new eventsModule.EventEmitter();
+exports.events = events;
 
 exports.main = {
 	context: 'init'
@@ -40,7 +45,7 @@ exports.startNew = function() {
 					},
 				]
 			},
-			nav: {
+			position: {
 				galaxyId: 0, 
 				regionId: 0,
 				systemId: 0,
@@ -100,6 +105,7 @@ exports.startNew = function() {
 	};
 
 	exports.main = newGame;
+	events.emit('game-loaded');
 };
 
 exports.save = function(callback) {
@@ -113,6 +119,7 @@ exports.load = function() {
 		}
 		else {
 			exports.main = JSON.parse(data);
+			events.emit('game-loaded');
 		}
 	});
 };
