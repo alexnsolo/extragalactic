@@ -25,3 +25,16 @@ exports.getPlacesInCurrentSystem = function() {
 	var currentLocation = parseCurrentLocation(game.main.player.nav, game.main.universe);
 	return currentLocation.system.places;
 };
+
+exports.isWarpDestinationValid = function(destination) {
+	var currentLocation = parseCurrentLocation(game.main.player.nav, game.main.universe);
+	var place = _.find(currentLocation.system.places, function(item) { return item.beacon == destination; });
+	return place != null;
+};
+
+exports.warpTo = function(destination) {
+	var currentLocation = parseCurrentLocation(game.main.player.nav, game.main.universe);
+	var place = _.find(currentLocation.system.places, function(item) { return item.beacon == destination; });
+	game.main.player.nav.placeId = place.id;
+	return place;
+};

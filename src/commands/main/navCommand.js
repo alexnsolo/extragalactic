@@ -3,7 +3,7 @@ var common = 		require('./../../common.js');
 var navigation = 	require('./../../navigation/navigation.js');
 
 exports.applies = function(input, game) {
-	if (!context.includes('main')) return false;
+	if (!context.includes('main') && !context.includes('nav')) return false;
 	return (input == 'nav');
 };
 

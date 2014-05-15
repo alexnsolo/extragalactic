@@ -10,7 +10,7 @@ exports.applies = function(input, game) {
 };
 
 exports.execute = function(input, game) {
-	common.out('The ship\'s sensor array console outputs the following: ');
+	common.out('The navigation console outputs: ');
 	var places = navigation.getPlacesInCurrentSystem();
 	_.each(places, function(place) {
 		var content = '  [{{beacon}}] {{name}}';
