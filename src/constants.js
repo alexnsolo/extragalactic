@@ -4,5 +4,6 @@ exports.placeType = {
 	PLANET: 		2,
 	MOON: 			3,
 	STAR: 			4,
-	STATION: 		5
+	STATION: 		5,
+	JUMPGATE: 		6
 };

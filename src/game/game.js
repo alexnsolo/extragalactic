@@ -42,7 +42,7 @@ exports.startNew = function() {
 						health: 500,
 						maxHealth: 500,
 						properties: [{cargoCapacity: 300}]	
-					},
+					}
 				]
 			},
 			position: {
@@ -50,10 +50,9 @@ exports.startNew = function() {
 				regionId: 0,
 				systemId: 0,
 				placeId: 0
-			},
+			}
 		},
 		universe: { 
-			id: 0,
 			name: 'Dauntless',
 			galaxies: [
 				{
@@ -88,6 +87,45 @@ exports.startNew = function() {
 											type: constants.placeType.PLANET,
 											beacon: 'AC-3926',
 											coordinates: {x: 7803, y: 2356}
+										},
+										{
+											id: 3,
+											name: 'Jump Gate to Sirius',
+											type: constants.placeType.JUMPGATE,
+											beacon: 'AC-9833',
+											coordinates: {x: 9012, y: 5373},
+											jumpCoordinates: {
+												galaxyId: 0, 
+												regionId: 0,
+												systemId: 1,
+												placeId: 1
+											}
+										}
+									]
+								},
+								{
+									id: 1,
+									name: 'Sirius',
+									places: [
+										{
+											id: 0,
+											name: 'Asteroid field',
+											type: constants.placeType.ASTEROID_FIELD,
+											beacon: 'SR-1202',
+											coordinates: {x: 1203, y: 2833}
+										},
+										{
+											id: 1,
+											name: 'Jump Gate to Alpha Centauri',
+											type: constants.placeType.JUMPGATE,
+											beacon: 'SR-9027',
+											coordinates: {x: 8782, y: 9303},
+											jumpCoordinates: {
+												galaxyId: 0, 
+												regionId: 0,
+												systemId: 0,
+												placeId: 3
+											}
 										}
 									]
 								}
@@ -99,7 +137,7 @@ exports.startNew = function() {
 		},
 		time: {
 			ticks: Math.floor(Math.random()*2000),
-			eventQueue: [],
+			eventQueue: []
 		},
 		context: 'init'
 	};
@@ -109,11 +147,11 @@ exports.startNew = function() {
 };
 
 exports.save = function(callback) {
-	fs.writeFile('saves/saved-game.json', JSON.stringify(exports.main), 'utf8', callback);	
+	fs.writeFile('../saves/saved-game.json', JSON.stringify(exports.main), 'utf8', callback);
 };
 
 exports.load = function() {
-	fs.readFile('saves/saved-game.json', 'utf8', function(err, data) {
+	fs.readFile('../saves/saved-game.json', 'utf8', function(err, data) {
 		if (err) {
 			common.out('Could not load game: ' + err.message);
 		}

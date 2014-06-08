@@ -10,7 +10,8 @@ var commands = [
 	require('./main/navCommand.js'),
 	require('./ship/statusCommand.js'),
 	require('./nav/locationsCommand.js'),
-	require('./nav/warpCommand.js')
+	require('./nav/warpCommand.js'),
+	require('./nav/useJumpGateCommand.js')
 ];
 
 module.exports.main = commands;
