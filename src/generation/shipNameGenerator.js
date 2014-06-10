@@ -49,4 +49,4 @@ var doomFalcon = grammar([random(ABSTRACT_NOUNS), random(ANIMALS)]);
 var cometsBlessing = grammar([possessive(SPACE_NOUNS), random(ABSTRACT_NOUNS)]);
 var falconsGuile = grammar([possessive(ANIMALS), random(ASPECTS)]);
 
-exports.shipName = composite([milleniumFalcon, doomFalcon, cometsBlessing, falconsGuile], [0.55, 0.25, 0.10]);
+exports.generateShipName = composite([milleniumFalcon, doomFalcon, cometsBlessing, falconsGuile], [0.55, 0.25, 0.10]);
