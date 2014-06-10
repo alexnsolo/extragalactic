@@ -7,3 +7,9 @@ exports.placeType = {
 	STATION: 		5,
 	JUMPGATE: 		6
 };
+
+exports.subsystemType = {
+    CARGOHOLD:          0,
+    MINING_LASER:       1,
+    SUBLIGHT_ENGINE:    2
+};
