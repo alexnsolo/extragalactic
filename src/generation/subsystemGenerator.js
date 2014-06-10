@@ -6,7 +6,14 @@ exports.generateCargoHold = function() {
         description: 'Standard Cargo',
         health: 500,
         maxHealth: 500,
-        properties: [{cargoCapacity: 300}]
+        properties: [
+            {
+                cargo: {
+                    capacity: 300,
+                    contents: []
+                }
+            }
+        ]
     };
     return subsystem;
 }
