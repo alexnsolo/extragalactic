@@ -14,25 +14,15 @@ exports.currentTime = function() {
 };
 
 exports.addEvent = function(event, ticksFromNow) {
-	var time = game.main.time;
-	var occurs = time.ticks + ticksFromNow;
-	var node = {event: event, occurs: occurs};
-	
-	if (time.eventQueue.length == 0) {
-		time.eventQueue.push(node);
-	} else {
-		var i = 0;
-		while (i<time.eventQueue.length && time.eventQueue[i].occurs < occurs)
-			++i;
-		
-		time.eventQueue.splice(i, 0, node);
-	}
+    var time = game.main.time;
+    event.occurs = time.ticks + ticksFromNow;
+    time.eventQueue.push(event);
 };
 
 exports.removeEvent = function(event) {
     var time = game.main.time;
     var index = time.eventQueue.indexOf(event);
-    if (index > 0) {
+    if (index >= 0) {
         time.eventQueue.splice(index, 1);
     }
 };
