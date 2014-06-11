@@ -9,13 +9,19 @@ for (var i = 0; i<10; i++) {
         time.addEvent(
             {
                 execute: function() {
-                    common.out(' - Space Event ' + j + ' occurs');
+                    if (Math.random() > 0.75) {
+                        var holdOnJustAMinute = {
+                            process: function() {
+                                common.out(' - Space Event ' + j + ' interrupts');
+                            }
+                        };
+                        time.addInterrupt(holdOnJustAMinute);
+                    }
+                    else {
+                        common.out(' - Space Event ' + j + ' occurs');
+                    }
                 }
             }, j);
     })(9-i)
 }
-time.waitHours(1);
-time.waitHours(1);
-time.waitHours(1);
-time.waitHours(1);
-time.waitHours(10);
+time.waitHours(20);

@@ -32,11 +32,24 @@ exports.startJob = function(job) {
     time.jobs.push(job);
 };
 
-exports.cancelJob = function(job) {
+exports.stopJob = function(job) {
     var time = game.main.time;
     var index = time.jobs.indexOf(job);
-    if (index > 0) {
+    if (index >= 0) {
         time.jobs.splice(index, 1);
+    }
+};
+
+exports.addInterrupt = function(interrupt) {
+    var time = game.main.time;
+    time.interrupts.push(interrupt);
+};
+
+exports.removeInterrupt = function(interrupt) {
+    var time = game.main.time;
+    var index = time.interrupts.indexOf(interrupt);
+    if (index >= 0) {
+        time.interrupts.splice(index, 1);
     }
 };
 
@@ -68,9 +81,14 @@ exports.waitHours = function(hours) {
         }
 
         // process interrupts
-        for (i = 0; i < time.interrupts.length; i++) {
-            var interrupt = time.interrupts[i];
-            interrupt.process();
+        if (time.interrupts.length > 0) {
+            for (i = 0; i < time.interrupts.length; i++) {
+                var interrupt = time.interrupts[i];
+                interrupt.process();
+                this.removeInterrupt(interrupt);
+            }
+
+            break;
         }
 	}
 };
