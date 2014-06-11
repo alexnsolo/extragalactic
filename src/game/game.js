@@ -27,7 +27,9 @@ exports.startNew = function() {
 		universe: universeGenerator.generate(),
 		time: {
 			ticks: Math.floor(Math.random()*2000),
-			eventQueue: []
+			eventQueue: [],
+            jobs: [],
+            interrupts: []
 		},
 		context: 'init'
 	};

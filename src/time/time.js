@@ -5,7 +5,7 @@ var game = require('../game/game.js');
 exports.currentTime = function() {
 	return this.formatTime(game.main.time.ticks);
 };
-	
+
 exports.formatTime = function(ticks) {
 	var minutes = ticks * 15;
 	var thousands = Math.floor(minutes / 1000);
@@ -29,29 +29,58 @@ exports.addEvent =function(event, ticksFromNow) {
 	}
 };
 
+exports.removeEvent = function(event) {
+    var time = game.main.time;
+    var index = time.eventQueue.indexOf(event);
+    if (index > 0) {
+        time.eventQueue.splice(index, 1);
+    }
+};
+
+exports.startJob = function(job) {
+    var time = game.main.time;
+    time.jobs.push(job);
+};
+
+exports.cancelJob = function(job) {
+    var time = game.main.time;
+    var index = time.jobs.indexOf(job);
+    if (index > 0) {
+        time.jobs.splice(index, 1);
+    }
+};
+
 exports.waitHours =function(hours) {
 	var time = game.main.time;
-	var waitTicks = hours*4;
+	var end = time.ticks + hours*4;
+    var interval = 1;
 
-	while (waitTicks > 0) {
-		if (time.eventQueue.length == 0) {
-			// No events waiting, simply pass the time
-			time.ticks += waitTicks;
-			break;
-		}
-		
-		// Check if the next event happens during the wait
-		var node = time.eventQueue[0];
-		var timeToEvent = node.occurs - time.ticks;
-		if (timeToEvent <= waitTicks) {
-			time.eventQueue.shift();
-			time.ticks += timeToEvent;
-			node.event.execute();
-			waitTicks -= timeToEvent;
-		} else {
-			// The event is still in the future, simply advance time
-			time.ticks += waitTicks
-			break;
-		}
+	while (time.ticks < end) {
+        time.ticks += interval;
+
+        // process events
+        for (var i = 0; i < time.eventQueue.length; i++) {
+            if (time.interrupts.length > 0) break;
+
+            var event = time.eventQueue[i];
+            if (event.occurs <= time.ticks) {
+                event.execute();
+                this.removeEvent(event);
+            }
+        }
+
+        // process jobs
+        for (i = 0; i < time.jobs.length; i++) {
+            if (time.interrupts.length > 0) break;
+
+            var job = time.jobs[i];
+            job.progress(interval);
+        }
+
+        // process interrupts
+        for (i = 0; i < time.interrupts.length; i++) {
+            var interrupt = time.interrupts[i];
+            interrupt.process();
+        }
 	}
 };
