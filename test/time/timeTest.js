@@ -1,6 +1,6 @@
-var common = require('../common.js');
-var time = require('./time.js');
-var game = require('../game/game.js');
+var common = require('../../src/common.js');
+var time = require('./../../src/time/time.js');
+var game = require('../../src/game/game.js');
 
 game.startNew();
 
