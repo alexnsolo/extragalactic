@@ -16,7 +16,7 @@ exports.generateCargoHold = function() {
         ]
     };
     return subsystem;
-}
+};
 
 exports.generateMiningLaser = function() {
     var subsystem = {
@@ -27,7 +27,7 @@ exports.generateMiningLaser = function() {
         properties: [{miningPower: 12}]
     };
     return subsystem;
-}
+};
 
 exports.generateSublightEngine = function() {
     var subsystem = {
@@ -38,4 +38,4 @@ exports.generateSublightEngine = function() {
         properties: [{thrustPower: 45}]
     };
     return subsystem;
-}
+};

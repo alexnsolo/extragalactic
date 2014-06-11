@@ -19,7 +19,7 @@ exports.hasCapacityFor = function(item, ship) {
     var allHolds = getCargoholds(ship);
     var holdWithCapacity =_.find(allHolds, function(hold) { return holdHasCapacityFor(item, hold); });
     return holdWithCapacity != null;
-}
+};
 
 /**
  * Add item to the first cargohold with sufficient capacity.
@@ -30,7 +30,7 @@ exports.addItem = function(item, ship) {
     if (holdWithCapacity != null) {
         holdWithCapacity.contents.push(item);
     }
-}
+};
 
 /**
  * Remove item from the cargohold in which it resides.
@@ -46,4 +46,4 @@ exports.removeItem = function(item, ship) {
         var index = holdWithItem.contents.indexOf(item);
         holdWithItem.contents.splice(index, 1);
     }
-}
+};

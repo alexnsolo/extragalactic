@@ -2,18 +2,18 @@ var common = require('../common.js');
 var game = require('../game/game.js');
 
 
+function formatTime(ticks) {
+    var minutes = ticks * 15;
+    var thousands = Math.floor(minutes / 1000);
+    var remainder = minutes % 1000;
+    return thousands + ":" + remainder + " After Aegon's Landing";
+}
+
 exports.currentTime = function() {
-	return this.formatTime(game.main.time.ticks);
+	return formatTime(game.main.time.ticks);
 };
 
-exports.formatTime = function(ticks) {
-	var minutes = ticks * 15;
-	var thousands = Math.floor(minutes / 1000);
-	var remainder = minutes % 1000;
-	return thousands + ":" + remainder + " After Aegon's Landing";
-};
-
-exports.addEvent =function(event, ticksFromNow) {
+exports.addEvent = function(event, ticksFromNow) {
 	var time = game.main.time;
 	var occurs = time.ticks + ticksFromNow;
 	var node = {event: event, occurs: occurs};
@@ -50,7 +50,7 @@ exports.cancelJob = function(job) {
     }
 };
 
-exports.waitHours =function(hours) {
+exports.waitHours = function(hours) {
 	var time = game.main.time;
 	var end = time.ticks + hours*4;
     var interval = 1;

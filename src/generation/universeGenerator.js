@@ -85,4 +85,4 @@ exports.generate = function() {
         ]
     };
     return universe;
-}
+};

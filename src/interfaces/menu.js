@@ -17,4 +17,4 @@ exports.show = function() {
 	common.out('     - ' + 'Start'.cyan + ' New Game');
 	common.out('     - ' + 'Load'.cyan + ' Previous Game');
 	common.out('     - ' + 'Exit'.cyan + '\n');
-}
+};

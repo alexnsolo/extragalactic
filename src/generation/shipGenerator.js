@@ -14,4 +14,4 @@ exports.generatePlayerStartingShip = function() {
         ]
     };
     return ship;
-}
+};

@@ -14,4 +14,4 @@ var commands = [
 	require('./nav/useJumpGateCommand.js')
 ];
 
-module.exports.main = commands;
+exports.main = commands;
