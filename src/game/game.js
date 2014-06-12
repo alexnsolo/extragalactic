@@ -17,6 +17,9 @@ exports.startNew = function() {
 	var newGame = {
 		player: {
 			ship: shipGenerator.generatePlayerStartingShip(),
+            wealth: {
+                money: Math.round((Math.random() * 3456) + 209)
+            },
 			position: {
 				galaxyId: 0, 
 				regionId: 0,

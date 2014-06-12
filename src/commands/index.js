@@ -8,7 +8,8 @@ var commands = [
 	require('./main/waitCommand.js'),
 	require('./main/shipCommand.js'),
 	require('./main/navCommand.js'),
-	require('./ship/statusCommand.js'),
+    require('./main/econCommand.js'),
+    require('./ship/statusCommand.js'),
 	require('./nav/locationsCommand.js'),
 	require('./nav/warpCommand.js'),
 	require('./nav/useJumpGateCommand.js')
