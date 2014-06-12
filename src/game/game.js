@@ -14,30 +14,33 @@ exports.main = {
 };
 
 exports.startNew = function() {
-	var newGame = {
-		player: {
-			ship: shipGenerator.generatePlayerStartingShip(),
-            wealth: {
-                money: Math.round((Math.random() * 3456) + 209)
-            },
-			position: {
-				galaxyId: 0, 
-				regionId: 0,
-				systemId: 0,
-				placeId: 0
-			}
-		},
-		universe: universeGenerator.generate(),
-		time: {
-			ticks: Math.floor(Math.random()*2000),
-			eventQueue: [],
-            jobs: [],
-            interrupts: []
-		},
-		context: 'init'
-	};
+	var newGame = {};
+    exports.main = newGame;
 
-	exports.main = newGame;
+    newGame.universe = universeGenerator.generate();
+	newGame.time = {
+        ticks: Math.floor(Math.random()*2000),
+        eventQueue: [],
+        jobs: [],
+        interrupts: []
+    };
+    newGame.identifiers = {
+        nextShipId: 0
+    };
+    newGame.context = 'init';
+    newGame.player = {
+        ship: shipGenerator.generatePlayerStartingShip(),
+            wealth: {
+            money: Math.round((Math.random() * 3456) + 209)
+        },
+        position: {
+            galaxyId: 0,
+                regionId: 0,
+                systemId: 0,
+                placeId: 0
+        }
+    };
+
 	events.emit('game-loaded');
 };
 
