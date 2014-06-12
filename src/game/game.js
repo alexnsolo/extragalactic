@@ -19,13 +19,7 @@ exports.startNew = function() {
 			ship: {},
             wealth: {
                 money: Math.round((Math.random() * 3456) + 209)
-            },
-			position: {
-				galaxyId: 0,
-				regionId: 0,
-				systemId: 0,
-				placeId: 0
-			}
+            }
 		},
 		universe: {},
 		time: {
@@ -41,7 +35,7 @@ exports.startNew = function() {
 	};
     exports.main = newGame;
 
-    newGame.ship = shipGenerator.generatePlayerStartingShip();
+    newGame.player.ship = shipGenerator.generatePlayerStartingShip();
     newGame.universe = universeGenerator.generate();
 
 	events.emit('game-loaded');
