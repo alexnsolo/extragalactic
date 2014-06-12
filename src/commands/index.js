@@ -10,6 +10,7 @@ var commands = [
 	require('./main/navCommand.js'),
     require('./main/econCommand.js'),
     require('./ship/statusCommand.js'),
+    require('./ship/miningCommand.js'),
 	require('./nav/locationsCommand.js'),
 	require('./nav/warpCommand.js'),
 	require('./nav/useJumpGateCommand.js')

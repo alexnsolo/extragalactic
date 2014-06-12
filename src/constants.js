@@ -13,3 +13,7 @@ exports.subsystemType = {
     MINING_LASER:       1,
     SUBLIGHT_ENGINE:    2
 };
+
+exports.jobType = {
+    MINING:     0
+};

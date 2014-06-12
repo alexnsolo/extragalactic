@@ -62,6 +62,10 @@ exports.getPlacesInCurrentSystem = function() {
 	return currentPosition.system.places;
 };
 
+exports.getCurrentPlaceType = function() {
+    return currentPosition.place.type;
+};
+
 exports.isWarpDestinationValid = function(destination) {
 	var place = _.find(currentPosition.system.places, function(item) { return item.beacon == destination; });
 	return place != null;
