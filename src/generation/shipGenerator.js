@@ -23,7 +23,8 @@ exports.generatePlayerStartingShip = function() {
             regionId: 0,
             systemId: 0,
             placeId: 0
-        }
+        },
+        jobs: []
     };
     return ship;
 };

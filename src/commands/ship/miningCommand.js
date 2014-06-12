@@ -4,6 +4,7 @@ var navigation = 	require('./../../navigation/navigation.js');
 var mining = 	    require('./../../ship/mining.js');
 var constants =     require('./../../constants.js');
 var time =          require('./../../time/time.js');
+var _ =             require('underscore-node');
 
 exports.applies = function(input, game) {
     if (!context.includes('ship')) return false;
@@ -14,6 +15,7 @@ exports.applies = function(input, game) {
 };
 
 exports.execute = function(input, game) {
+    var playerShip = game.main.player.ship;
     var words = input.split(' ');
     if (words[0] == 'start') {
         if (navigation.getCurrentPlaceType() != constants.placeType.ASTEROID_FIELD) {
@@ -21,18 +23,28 @@ exports.execute = function(input, game) {
             return;
         }
 
-        if (!mining.hasMiningCapability(game.main.player.ship)) {
+        if (!mining.hasMiningCapability(playerShip)) {
             common.out('Your ship has no subsystems capable of doing that.');
             return;
         }
 
-        var miningJob = mining.createMiningJob(game.main.player.ship);
+        var miningJob = mining.createMiningJob(playerShip);
+        playerShip.jobs.push(miningJob);
         time.startJob(miningJob);
 
         common.out('Your ship\'s mining lasers hum to life and begin to carve into a nearby asteroid.\n' +
                    'This may take a while.');
     }
     else if (words[0] == 'stop') {
-        // TODO: cancel the mining job
+        var miningJobs = _.filter(playerShip.jobs, function(job) {return job.type == constants.jobType.MINING});
+        _.each(miningJobs, function(job) {
+            var index = playerShip.jobs.indexOf(job);
+            if (index >= 0) {
+                playerShip.jobs.splice(index, 0);
+            }
+            time.stopJob(job);
+        });
+
+        common.out('Your ship\'s mining lasers power down, pulling the last bits of ore into your cargohold.');
     }
 };

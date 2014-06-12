@@ -12,6 +12,7 @@ exports.createMiningJob = function (ship) {
     return {
         type: constants.jobType.MINING,
         ownerId: ship.id,
+        placeId: ship.position.placeId,
         progress: function(ticks) {
             // TODO: do some mining
         }
