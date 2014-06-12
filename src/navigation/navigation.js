@@ -20,7 +20,7 @@ function PlayerPosition() {
 	this.place = null;
 
 	this.parseGameData = function() {
-		var position = parsePosition(game.main.player.position);
+		var position = parsePosition(game.main.player.ship.position);
 		this.galaxy = position.galaxy;
 		this.region = position.region;
 		this.system = position.system;
@@ -29,7 +29,7 @@ function PlayerPosition() {
 
 	this.changePlaceTo = function(place) {
 		this.place = place;
-		game.main.player.position.placeId = place.id;
+		game.main.player.ship.position.placeId = place.id;
 	};
 
 	this.changePositionTo = function(position) {
@@ -37,10 +37,10 @@ function PlayerPosition() {
 		this.region = position.region;
 		this.system = position.system;
 		this.place 	= position.place;
-		game.main.player.position.galaxyId = position.galaxy.id;
-		game.main.player.position.regionId = position.region.id;
-		game.main.player.position.systemId = position.system.id;
-		game.main.player.position.placeId = position.place.id;
+		game.main.player.ship.position.galaxyId = position.galaxy.id;
+		game.main.player.ship.position.regionId = position.region.id;
+		game.main.player.ship.position.systemId = position.system.id;
+		game.main.player.ship.position.placeId = position.place.id;
 	}
 }
 

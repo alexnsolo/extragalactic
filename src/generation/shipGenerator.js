@@ -17,7 +17,13 @@ exports.generatePlayerStartingShip = function() {
             subsystemGenerator.generateCargoHold(),
             subsystemGenerator.generateSublightEngine(),
             subsystemGenerator.generateMiningLaser()
-        ]
+        ],
+        position: {
+            galaxyId: 0,
+            regionId: 0,
+            systemId: 0,
+            placeId: 0
+        }
     };
     return ship;
 };
