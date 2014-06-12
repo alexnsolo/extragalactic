@@ -1,44 +1,50 @@
 var constants = require('../constants.js');
+var game =      require('./../game/game.js');
 
 exports.generate = function() {
+    var nextGalaxyId = 0;
+    var nextRegionId = 0;
+    var nextSystemId = 0;
+    var nextPlaceId = 0;
+
     var universe = {
         name: 'Dauntless',
             galaxies: [
             {
-                id: 0,
+                id: ++nextGalaxyId,
                 name: 'Heart',
                 regions: [
                     {
-                        id: 0,
+                        id: ++nextRegionId,
                         name: 'Federation',
                         systems: [
                             {
-                                id: 0,
+                                id: ++nextSystemId,
                                 name: 'Alpha Centauri',
                                 places: [
                                     {
-                                        id: 0,
+                                        id: ++nextPlaceId,
                                         name: 'Asteroid field',
                                         type: constants.placeType.ASTEROID_FIELD,
                                         beacon: 'AC-6433',
                                         coordinates: {x: 2045, y: 8572}
                                     },
                                     {
-                                        id: 1,
+                                        id: ++nextPlaceId,
                                         name: 'Rigel Kent Federation Hub',
                                         type: constants.placeType.STATION,
                                         beacon: 'AC-3887',
                                         coordinates: {x: 7775, y: 1249}
                                     },
                                     {
-                                        id: 2,
+                                        id: ++nextPlaceId,
                                         name: 'Rigel Kent',
                                         type: constants.placeType.PLANET,
                                         beacon: 'AC-3926',
                                         coordinates: {x: 7803, y: 2356}
                                     },
                                     {
-                                        id: 3,
+                                        id: ++nextPlaceId,
                                         name: 'Jump Gate to Sirius',
                                         type: constants.placeType.JUMPGATE,
                                         beacon: 'AC-9833',
@@ -53,18 +59,18 @@ exports.generate = function() {
                                 ]
                             },
                             {
-                                id: 1,
+                                id: ++nextSystemId,
                                 name: 'Sirius',
                                 places: [
                                     {
-                                        id: 0,
+                                        id: ++nextPlaceId,
                                         name: 'Asteroid field',
                                         type: constants.placeType.ASTEROID_FIELD,
                                         beacon: 'SR-1202',
                                         coordinates: {x: 1203, y: 2833}
                                     },
                                     {
-                                        id: 1,
+                                        id: ++nextPlaceId,
                                         name: 'Jump Gate to Alpha Centauri',
                                         type: constants.placeType.JUMPGATE,
                                         beacon: 'SR-9027',
