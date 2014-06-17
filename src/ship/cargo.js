@@ -43,7 +43,6 @@ exports.removeItem = function(item, ship) {
         })
     });
     if (holdWithItem != null) {
-        var index = holdWithItem.contents.indexOf(item);
-        holdWithItem.contents.splice(index, 1);
+        holdWithItem.contents.remove(holdWithItem);
     }
 };

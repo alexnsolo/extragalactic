@@ -38,10 +38,7 @@ exports.execute = function(input, game) {
     else if (words[0] == 'stop') {
         var miningJobs = _.filter(playerShip.jobs, function(job) {return job.type == constants.jobType.MINING});
         _.each(miningJobs, function(job) {
-            var index = playerShip.jobs.indexOf(job);
-            if (index >= 0) {
-                playerShip.jobs.splice(index, 0);
-            }
+            playerShip.jobs.remove(job);
             time.stopJob(job);
         });
 

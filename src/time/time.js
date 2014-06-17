@@ -21,10 +21,7 @@ exports.addEvent = function(event, ticksFromNow) {
 
 exports.removeEvent = function(event) {
     var time = game.main.time;
-    var index = time.eventQueue.indexOf(event);
-    if (index >= 0) {
-        time.eventQueue.splice(index, 1);
-    }
+    time.eventQueue.remove(event);
 };
 
 exports.startJob = function(job) {
@@ -34,10 +31,7 @@ exports.startJob = function(job) {
 
 exports.stopJob = function(job) {
     var time = game.main.time;
-    var index = time.jobs.indexOf(job);
-    if (index >= 0) {
-        time.jobs.splice(index, 1);
-    }
+    time.jobs.remove(job);
 };
 
 exports.addInterrupt = function(interrupt) {
@@ -47,10 +41,7 @@ exports.addInterrupt = function(interrupt) {
 
 exports.removeInterrupt = function(interrupt) {
     var time = game.main.time;
-    var index = time.interrupts.indexOf(interrupt);
-    if (index >= 0) {
-        time.interrupts.splice(index, 1);
-    }
+    time.interrupts.remove(interrupt);
 };
 
 exports.waitHours = function(hours) {
