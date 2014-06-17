@@ -1,3 +1,4 @@
+require('./javascript.js');
 var commands = require('./commands/index.js').main;
 var common = require('./common.js');
 var game = require('./game/game.js');

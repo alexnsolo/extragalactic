@@ -2,13 +2,16 @@ var _ = require('underscore-node');
 var constants = require('../constants.js');
 
 function getCargoholds(ship) {
-    return _.where(ship.subsystems, {type: constants.subsystemType.CARGOHOLD});
+    return _.filter(ship.subsystems, function(subsystem) {
+        return subsystem.type == constants.subsystemType.CARGOHOLD
+            && subsystem.health > 0;
+    });
 }
 
 function holdHasCapacityFor(hold, item) {
     var currentVolume = 0;
-    _.each(hold.contents, function(currentItem) { currentVolume += currentItem.volume; });
-     return hold.capacity >= currentVolume + item.volume;
+    _.each(hold.cargo.contents, function(currentItem) { currentVolume += currentItem.volume; });
+     return hold.cargo.capacity >= currentVolume + item.volume;
 }
 
 /**
@@ -17,7 +20,7 @@ function holdHasCapacityFor(hold, item) {
  */
 exports.hasCapacityFor = function(item, ship) {
     var allHolds = getCargoholds(ship);
-    var holdWithCapacity =_.find(allHolds, function(hold) { return holdHasCapacityFor(item, hold); });
+    var holdWithCapacity =_.find(allHolds, function(hold) { return holdHasCapacityFor(hold, item); });
     return holdWithCapacity != null;
 };
 
@@ -26,9 +29,9 @@ exports.hasCapacityFor = function(item, ship) {
  */
 exports.addItem = function(item, ship) {
     var allHolds = getCargoholds(ship);
-    var holdWithCapacity =_.find(allHolds, function(hold) { return holdHasCapacityFor(item, hold); });
+    var holdWithCapacity =_.find(allHolds, function(hold) { return holdHasCapacityFor(hold, item); });
     if (holdWithCapacity != null) {
-        holdWithCapacity.contents.push(item);
+        holdWithCapacity.cargo.contents.push(item);
     }
 };
 
@@ -38,11 +41,11 @@ exports.addItem = function(item, ship) {
 exports.removeItem = function(item, ship) {
     var allHolds = getCargoholds(ship);
     var holdWithItem = _.find(allHolds, function(hold) {
-        return _.some(hold.contents, function(currentItem) {
+        return _.some(hold.cargo.contents, function(currentItem) {
             return currentItem == item;
         })
     });
     if (holdWithItem != null) {
-        holdWithItem.contents.remove(holdWithItem);
+        holdWithItem.cargo.contents.remove(holdWithItem);
     }
 };

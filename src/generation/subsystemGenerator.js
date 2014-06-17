@@ -6,14 +6,10 @@ exports.generateCargoHold = function() {
         description: 'Standard Cargo',
         health: 500,
         maxHealth: 500,
-        properties: [
-            {
-                cargo: {
-                    capacity: 300,
-                    contents: []
-                }
-            }
-        ]
+        cargo: {
+            capacity: 300,
+            contents: []
+        }
     };
     return subsystem;
 };
@@ -24,7 +20,9 @@ exports.generateMiningLaser = function() {
         description: 'Dalton ML-1300',
         health: 100,
         maxHealth: 100,
-        properties: [{miningPower: 12}]
+        mining: {
+            power: 12
+        }
     };
     return subsystem;
 };
@@ -35,7 +33,9 @@ exports.generateSublightEngine = function() {
         description: 'Quicksilver Dasher',
         health: 250,
         maxHealth: 250,
-        properties: [{thrustPower: 45}]
+        thrust: {
+            power: 45
+        }
     };
     return subsystem;
 };
