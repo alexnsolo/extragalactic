@@ -4,6 +4,7 @@ var common = 				require('../common.js');
 var _ = 					require('underscore-node');
 var fs = 					require('fs');
 var eventsModule =			require('events');
+var icebox =                require('icebox');
 
 
 var events = new eventsModule.EventEmitter();
@@ -42,11 +43,11 @@ exports.startNew = function() {
 };
 
 exports.save = function(callback) {
-	fs.writeFile('../saves/saved-game.json', JSON.stringify(exports.main), 'utf8', callback);
+    fs.writeFile('saves/saved-game.json', JSON.stringify(exports.main), 'utf8', callback);
 };
 
 exports.load = function() {
-	fs.readFile('../saves/saved-game.json', 'utf8', function(err, data) {
+	fs.readFile('saves/saved-game.json', 'utf8', function(err, data) {
 		if (err) {
 			common.out('Could not load game: ' + err.message);
 		}

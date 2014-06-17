@@ -19,10 +19,10 @@ exports.generatePlayerStartingShip = function() {
             subsystemGenerator.generateMiningLaser()
         ],
         position: {
-            galaxyId: 0,
-            regionId: 0,
-            systemId: 0,
-            placeId: 0
+            galaxyId: 1,
+            regionId: 1,
+            systemId: 1,
+            placeId: 1
         },
         jobs: []
     };
