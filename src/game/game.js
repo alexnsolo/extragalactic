@@ -36,8 +36,8 @@ exports.startNew = function() {
 	};
     exports.main = newGame;
 
-    newGame.player.ship = shipGenerator.generatePlayerStartingShip();
     newGame.universe = universeGenerator.generate();
+    newGame.player.ship = shipGenerator.generatePlayerStartingShip();
 
 	events.emit('game-loaded');
 };

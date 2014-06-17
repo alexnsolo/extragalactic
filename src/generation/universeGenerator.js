@@ -49,12 +49,7 @@ exports.generate = function() {
                                         type: constants.placeType.JUMPGATE,
                                         beacon: 'AC-9833',
                                         coordinates: {x: 9012, y: 5373},
-                                        jumpCoordinates: {
-                                            galaxyId: 0,
-                                            regionId: 0,
-                                            systemId: 1,
-                                            placeId: 1
-                                        }
+                                        jumpCoordinates: {}
                                     }
                                 ]
                             },
@@ -75,12 +70,7 @@ exports.generate = function() {
                                         type: constants.placeType.JUMPGATE,
                                         beacon: 'SR-9027',
                                         coordinates: {x: 8782, y: 9303},
-                                        jumpCoordinates: {
-                                            galaxyId: 0,
-                                            regionId: 0,
-                                            systemId: 0,
-                                            placeId: 3
-                                        }
+                                        jumpCoordinates: {}
                                     }
                                 ]
                             }
@@ -90,5 +80,23 @@ exports.generate = function() {
             }
         ]
     };
+
+    // hook up jump gates
+    // yes, this is temporarily convoluted - sue me
+    var alphaCentauriJumpGate = universe.galaxies[0].regions[0].systems[0].places[3];
+    var siriusJumpGate = universe.galaxies[0].regions[0].systems[1].places[1];
+    alphaCentauriJumpGate.jumpCoordinates = {
+        galaxy: universe.galaxies[0],
+        region: universe.galaxies[0].regions[0],
+        system: universe.galaxies[0].regions[0].systems[1],
+        place:  siriusJumpGate
+    };
+    siriusJumpGate.jumpCoordinates = {
+        galaxy: universe.galaxies[0],
+        region: universe.galaxies[0].regions[0],
+        system: universe.galaxies[0].regions[0].systems[0],
+        place:  alphaCentauriJumpGate
+    };
+
     return universe;
 };
