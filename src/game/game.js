@@ -43,7 +43,8 @@ exports.startNew = function() {
 };
 
 exports.save = function(callback) {
-    fs.writeFile('saves/saved-game.json', JSON.stringify(exports.main), 'utf8', callback);
+    var frozenData = icebox.freeze(exports.main);
+    fs.writeFile('saves/saved-game.json', JSON.stringify(frozenData), 'utf8', callback);
 };
 
 exports.load = function() {
@@ -52,7 +53,8 @@ exports.load = function() {
 			common.out('Could not load game: ' + err.message);
 		}
 		else {
-			exports.main = JSON.parse(data);
+            var frozenData = JSON.parse(data);
+            exports.main = icebox.thaw(frozenData);
 			events.emit('game-loaded');
 		}
 	});

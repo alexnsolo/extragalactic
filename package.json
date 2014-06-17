@@ -6,6 +6,7 @@
 		"prompt": "0.2.x",
 		"underscore-node": "0.1.x",
 		"colors": "0.6.2",
-		"string": "1.8.x"
+		"string": "1.8.x",
+        "icebox": "0.1.x"
 	}
 }
