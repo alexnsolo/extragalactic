@@ -11,6 +11,7 @@ var commands = [
     require('./main/econCommand.js'),
     require('./ship/statusCommand.js'),
     require('./ship/miningCommand.js'),
+    require('./ship/cargoCommand.js'),
 	require('./nav/locationsCommand.js'),
 	require('./nav/warpCommand.js'),
 	require('./nav/useJumpGateCommand.js')

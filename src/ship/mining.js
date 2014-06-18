@@ -20,7 +20,8 @@ exports.createMiningJob = function (ship) {
         progress: function(ticks) {
             var ore = {
                 volume: ticks*10,
-                name: 'Iron Ore'
+                name: 'Iron Ore',
+                stackable: true
             };
 
             // check: ship is still in the place it started mining
@@ -34,7 +35,6 @@ exports.createMiningJob = function (ship) {
 
             // add ore to cargo
             cargo.addItem(ore, ship);
-            common.out('\nmined some ore');
         }
     };
 };
