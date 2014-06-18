@@ -15,13 +15,15 @@ exports.execute = function(input, game) {
         items = items.concat(hold.cargo.contents);    
     });
     
-    common.out('Your ship\'s cargoholds:\n');
+    common.out('Your ship\'s cargoholds:');
     _.each(holds, function(hold) {
         common.out('  ' + hold.description + ' (' + hold.cargo.capacity + 'm3) ' + cargo.capacityBar(hold) + '\n');    
     });
-    
-    common.out('\nTheir contents:\n');
-    _.each(items, function(item) {
-        common.out('  ' + item.name + ' (' + item.volume + 'm3)');    
-    });
+
+    if (items.length > 0) {
+        common.out('Their contents:');
+        _.each(items, function(item) {
+            common.out('  ' + item.name + ' (' + item.volume + 'm3)');
+        });
+    }
 };

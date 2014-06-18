@@ -41,11 +41,10 @@ exports.addItem = function(item, ship) {
             var stack = _.find(holdWithCapacity.cargo.contents, function(checkItem) { return checkItem.name == item.name && checkItem.stackable; });
             if (stack != null) {
                 stack.volume += item.volume;
+                return;
             }
         }
-        else {
-            holdWithCapacity.cargo.contents.push(item);    
-        }
+        holdWithCapacity.cargo.contents.push(item);
     }
 };
 
@@ -76,19 +75,15 @@ exports.getCargoholds = function(ship) {
  */
 exports.capacityBar = function(hold) {
     var currentVolume = getCurrentVolume(hold);
-    common.out('currentVolume: ' + currentVolume);
 	var capacityBar = '';
 	var capacity = Math.ceil(currentVolume/hold.cargo.capacity * 10);
-	if (capacity > 0) {
-		for (var i=0;i<10;i++) {
-			if (i < capacity) {
-				capacityBar += '=';
-			}
-			else {
-				capacityBar += ' ';
-			}
-		}
-	
-	}
+    for (var i=0;i<10;i++) {
+        if (i < capacity) {
+            capacityBar += '=';
+        }
+        else {
+            capacityBar += ' ';
+        }
+    }
 	return '[' + capacityBar + ']';
 };
