@@ -6,7 +6,7 @@ var _ = 			require('underscore-node');
 
 exports.applies = function(input, game) {
 	if (!context.includes('nav')) return false;
-	return (input == 'locations');
+	return (input == 'beacons');
 };
 
 exports.execute = function(input, game) {
