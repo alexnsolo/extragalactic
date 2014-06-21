@@ -8,5 +8,5 @@ exports.applies = function(input, game) {
 };
 
 exports.execute = function(input, game) {
-	common.out('The time is ' + time.currentTime());
+	common.out(time.currentTime());
 };

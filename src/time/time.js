@@ -1,12 +1,17 @@
 var common = require('../common.js');
 var game = require('../game/game.js');
 
-
+/**
+ * Time is measured in hours since the crest of 3000 AD
+ */
 function formatTime(ticks) {
-    var minutes = ticks * 15;
-    var thousands = Math.floor(minutes / 1000);
-    var remainder = minutes % 1000;
-    return thousands + ":" + remainder + " After Aegon's Landing";
+    var ticksLeft = ticks;
+    var years = Math.floor(ticksLeft / 365 / 24);
+    ticksLeft -= years * 24 * 365;
+    var days =  Math.floor(ticksLeft / 24);
+    ticksLeft -= days * 24;
+    var hours = ticksLeft;
+    return "ET: " + hours + "." + days + " of " + (years+3000) + " AN";
 }
 
 exports.currentTime = function() {
@@ -46,7 +51,7 @@ exports.removeInterrupt = function(interrupt) {
 
 exports.waitHours = function(hours) {
 	var time = game.main.time;
-	var end = time.ticks + hours*4;
+	var end = time.ticks + hours;
     var interval = 1;
 
 	while (time.ticks < end) {

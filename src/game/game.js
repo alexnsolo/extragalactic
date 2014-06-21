@@ -24,7 +24,7 @@ exports.startNew = function() {
 		},
 		universe: {},
 		time: {
-			ticks: Math.floor(Math.random()*2000),
+			ticks: 622324,
 			eventQueue: [],
             jobs: [],
             interrupts: []
