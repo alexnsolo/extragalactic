@@ -1,5 +1,6 @@
 require('./javascript.js');
 var commands = require('./commands/index.js').main;
+var commandContext = require('./commands/commandContext.js').main;
 var common = require('./common.js');
 var game = require('./game/game.js');
 var menu = require('./interfaces/menu.js');
@@ -30,7 +31,7 @@ function doCommand(input) {
 }
 
 function getCommand() {
-	var contextName = game.main.context;
+	var contextName = commandContext.getTopmostContext();
 	prompt.get([{name: 'command', message: contextName + ' >'.green}], 
 		function(err, result) {
 			doCommand(result.command);

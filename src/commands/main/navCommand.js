@@ -10,5 +10,5 @@ exports.applies = function(input, game) {
 exports.execute = function(input, game) {
 	var description = navigation.describeCurrentPosition();
 	common.out(description);
-	context.switchTo('nav');
+	context.push('nav');
 };

@@ -10,5 +10,5 @@ exports.applies = function(input, game) {
 exports.execute = function(input, game) {
     var description = economics.describePlayerWealth();
     common.out(description);
-    context.switchTo('econ');
+    context.push('econ');
 };
