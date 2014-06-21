@@ -34,7 +34,10 @@ exports.generate = function() {
                                         name: 'Rigel Kent Federation Hub',
                                         type: constants.placeType.STATION,
                                         beacon: 'AC-3887',
-                                        coordinates: {x: 7775, y: 1249}
+                                        coordinates: {x: 7775, y: 1249},
+                                        station: {
+                                            description: 'A bustling hub of economic activity. Complimented by seven Excelsior laser batteries'
+                                        }
                                     },
                                     {
                                         id: ++nextPlaceId,

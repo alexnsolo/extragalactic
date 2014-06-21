@@ -18,7 +18,7 @@ exports.execute = function(input, game) {
     var playerShip = game.main.player.ship;
     var words = input.split(' ');
     if (words[0] == 'start') {
-        if (navigation.getCurrentPlaceType() != constants.placeType.ASTEROID_FIELD) {
+        if (navigation.getCurrentPlace().type != constants.placeType.ASTEROID_FIELD) {
             common.out('There is nothing to mine here.');
             return;
         }

@@ -15,8 +15,8 @@ exports.getPlacesInCurrentSystem = function() {
     return game.main.player.ship.position.system.places;
 };
 
-exports.getCurrentPlaceType = function() {
-    return game.main.player.ship.position.place.type;
+exports.getCurrentPlace = function() {
+    return game.main.player.ship.position.place;
 };
 
 exports.isWarpDestinationValid = function(beacon) {
