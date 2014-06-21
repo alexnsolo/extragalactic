@@ -30,6 +30,16 @@ exports.createMiningJob = function (ship) {
             if (this.place != ship.position.place || !exports.hasMiningCapability(ship) || !cargo.hasCapacityFor(ore, ship)) {
                 ship.jobs.remove(this);
                 time.stopJob(this);
+
+                // add interrupt for full cargoholds
+                if (!cargo.hasCapacityFor(ore, ship)) {
+                    var interrupt = {
+                        process: function() {
+                            common.out('Your mining lasers power down since your cargoholds cannot store additional ore.')
+                        }
+                    };
+                    time.addInterrupt(interrupt)
+                }
                 return;
             }
 

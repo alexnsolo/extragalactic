@@ -24,4 +24,4 @@ for (var i = 0; i<10; i++) {
             }, j);
     })(9-i)
 }
-time.waitHours(20);
+time.wait(20);

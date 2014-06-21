@@ -12,6 +12,6 @@ var playerShip = game.main.player.ship;
 var miningJob = mining.createMiningJob(playerShip);
 playerShip.jobs.push(miningJob);
 time.startJob(miningJob);
-time.waitHours(2);
+time.wait(2);
 
 cargoCommand.execute(null, game);

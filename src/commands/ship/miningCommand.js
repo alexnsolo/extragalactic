@@ -32,8 +32,7 @@ exports.execute = function(input, game) {
         playerShip.jobs.push(miningJob);
         time.startJob(miningJob);
 
-        common.out('Your ship\'s mining lasers hum to life and begin to carve into a nearby asteroid.\n' +
-                   'This may take a while.');
+        common.out('Your ship\'s mining lasers hum to life and begin to carve into a nearby asteroid. This may take a while.');
     }
     else if (words[0] == 'stop') {
         var miningJobs = _.filter(playerShip.jobs, function(job) {return job.type == constants.jobType.MINING});

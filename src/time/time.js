@@ -49,9 +49,10 @@ exports.removeInterrupt = function(interrupt) {
     time.interrupts.remove(interrupt);
 };
 
-exports.waitHours = function(hours) {
+exports.wait = function(hours) {
 	var time = game.main.time;
-	var end = time.ticks + hours;
+	if (hours == null) hours = 24*3; // boredom
+    var end = time.ticks + hours;
     var interval = 1;
 
 	while (time.ticks < end) {
@@ -59,8 +60,6 @@ exports.waitHours = function(hours) {
 
         // process events
         for (var i = 0; i < time.eventQueue.length; i++) {
-            if (time.interrupts.length > 0) break;
-
             var event = time.eventQueue[i];
             if (event.occurs <= time.ticks) {
                 event.execute();
@@ -70,8 +69,6 @@ exports.waitHours = function(hours) {
 
         // process jobs
         for (i = 0; i < time.jobs.length; i++) {
-            if (time.interrupts.length > 0) break;
-
             var job = time.jobs[i];
             job.progress(interval);
         }
