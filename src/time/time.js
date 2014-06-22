@@ -70,7 +70,7 @@ exports.wait = function(hours) {
         // process jobs
         for (i = 0; i < time.jobs.length; i++) {
             var job = time.jobs[i];
-            job.progress(interval);
+            job.progress(interval, time.ticks);
         }
 
         // process interrupts

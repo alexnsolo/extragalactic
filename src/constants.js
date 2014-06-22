@@ -1,5 +1,5 @@
 exports.placeType = {
-	VOID: 			0,
+	WARPSPACE: 		0,
 	ASTEROID_FIELD: 1,
 	PLANET: 		2,
 	MOON: 			3,
@@ -15,5 +15,6 @@ exports.subsystemType = {
 };
 
 exports.jobType = {
-    MINING:     0
+    MINING:     0,
+    WARP:     0
 };

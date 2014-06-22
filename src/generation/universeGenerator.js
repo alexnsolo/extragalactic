@@ -53,6 +53,11 @@ exports.generate = function() {
                                         beacon: 'AC-9833',
                                         coordinates: {x: 9012, y: 5373},
                                         jumpCoordinates: {}
+                                    },
+                                    {
+                                        id: ++nextPlaceId,
+                                        name: 'Warpspace',
+                                        type: constants.placeType.WARPSPACE
                                     }
                                 ]
                             },
