@@ -1,13 +1,10 @@
-var context = 	require('./../commandContext.js').main;
-var common = 	require('./../../common.js');
+var context = 	require('./../commandContext.js');
 var menu = 		require('./../../interfaces/menu.js');
+var game =		require('./../../game/game.js');
 
-exports.applies = function(input, game) {
-	if (context.includes('menu')) return false;
-	return (input == 'menu');
-};
+exports.name = 'menu';
 
-exports.execute = function(input, game) {
+exports.execute = function(input) {
 	game.save();
 	context.switchTo('menu');
 	menu.show();

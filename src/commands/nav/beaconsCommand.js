@@ -1,15 +1,9 @@
-var context = 		require('./../commandContext.js').main;
 var common = 		require('./../../common.js');
 var navigation = 	require('./../../navigation/navigation.js');
 var S = 			require('string');
 var _ = 			require('underscore-node');
 
-exports.applies = function(input, game) {
-	if (!context.includes('nav')) return false;
-	return (input == 'beacons');
-};
-
-exports.execute = function(input, game) {
+exports.execute = function(input) {
 	common.out('The navigation console outputs: ');
 	var places = navigation.getPlacesInCurrentSystem();
 	_.each(places, function(place) {

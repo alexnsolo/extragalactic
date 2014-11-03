@@ -1,12 +1,9 @@
-var context = 	require('./../commandContext.js').main;
 var common = 	require('./../../common.js');
+var game =		require('./../../game/game.js');
 
-exports.applies = function(input, game) {
-	if (!context.includes('menu')) return false;
-	return (input == 'load');
-};
+exports.name = 'load';
 
-exports.execute = function(input, game) {
+exports.execute = function(input) {
     game.load();
 	common.out('Hello space.')
 };

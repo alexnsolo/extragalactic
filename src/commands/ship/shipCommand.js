@@ -1,7 +1,7 @@
-var context = 	require('./../commandContext.js').main;
 var common = 	require('./../../common.js');
 var _ = 		require('underscore-node');
 var colors = 	require('colors');
+var game =		require('./../../game/game.js');
 
 function describeShip(ship) {
 	common.out('The "' + ship.name + '"');
@@ -9,12 +9,8 @@ function describeShip(ship) {
 	common.out(ship.description);
 }
 
-exports.applies = function(input, game) {
-	if (!context.includes('main')) return false;
-	return (input == 'ship');
-};
+exports.name = 'ship';
 
-exports.execute = function(input, game) {
+exports.execute = function(input) {
 	describeShip(game.main.player.ship);
-	context.push('ship');
 };

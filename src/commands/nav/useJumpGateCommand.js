@@ -1,13 +1,7 @@
-var context = 		require('./../commandContext.js').main;
 var common = 		require('./../../common.js');
 var navigation = 	require('./../../navigation/navigation.js');
 
-exports.applies = function(input, game) {
-	if (!context.includes('nav')) return false;
-	return (input == 'use jump gate');
-};
-
-exports.execute = function(input, game) {
+exports.execute = function(input) {
 	var valid = navigation.isJumpGatePresent();
 	if (!valid) {
 		common.out('The navigation console outputs:');

@@ -5,16 +5,9 @@ var mining = 	    require('./../../ship/mining.js');
 var constants =     require('./../../constants.js');
 var time =          require('./../../time/time.js');
 var _ =             require('underscore-node');
+var game =			require('./../../game/game.js');
 
-exports.applies = function(input, game) {
-    if (!context.includes('ship')) return false;
-    var words = input.split(' ');
-    return (words.length == 2
-        && (words[0] == 'start' || words[0] == 'stop')
-        && words[1] == 'mining');
-};
-
-exports.execute = function(input, game) {
+exports.execute = function(input) {
     var playerShip = game.main.player.ship;
     var words = input.split(' ');
     if (words[0] == 'start') {

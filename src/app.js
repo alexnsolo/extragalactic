@@ -1,10 +1,7 @@
 require('./javascript.js');
-var commands = require('./commands/index.js').main;
-var commandContext = require('./commands/commandContext.js').main;
 var common = require('./common.js');
-var game = require('./game/game.js');
 var menu = require('./interfaces/menu.js');
-var context = require('./commands/commandContext.js').main;
+var commandContext = require('./commands/commandContext.js');
 var _ = require('underscore-node');
 var S = require('string');
 
@@ -12,12 +9,16 @@ function doCommand(input) {
 	common.out('');
 
 	if (S(input).isEmpty()) {
-		common.out('Silence fills the void.');
+		common.out('Available commands:');
+		_.each(commandContext.current().commands, function(command) {
+			common.out(' - ' + command.name);
+		});
 	}
 	else {
-		var command = _.find(commands, function(command) { return command.applies(input, game) });
+		var commandName = input.split(' ')[0];
+		var command = _.findWhere(commandContext.current().commands, {name: commandName});
 		if (command != null) {
-			command.execute(input, game);
+			command.execute(input);
 		}
 		else {
 			common.out('An echo rings out, \'' + input + '\'.');
@@ -31,8 +32,7 @@ function doCommand(input) {
 }
 
 function getCommand() {
-	var contextName = commandContext.getTopmostContext();
-	prompt.get([{name: 'command', message: contextName + ' >'.green}], 
+	prompt.get([{name: 'command', message: '>'.green}], 
 		function(err, result) {
 			doCommand(result.command);
 		}
@@ -46,7 +46,7 @@ prompt.message = '';
 prompt.delimiter = '';
 
 // show the menu
-context.switchTo('menu');
+commandContext.switchTo('menu');
 menu.show();
 
 getCommand();

@@ -1,7 +1,7 @@
-var context = 	require('./../commandContext.js').main;
 var common = 	require('./../../common.js');
 var _ = 		require('underscore-node');
 var colors = 	require('colors');
+var game =		require('./../../game/game.js');
 
 function describeStatus(ship) {
 	var assessmentText = 'The ship is in good condition.';
@@ -30,11 +30,6 @@ function describeStatus(ship) {
 	});
 }
 
-exports.applies = function(input, game) {
-	if (!context.includes('ship')) return false;
-	return (input == 'status');
-};
-
-exports.execute = function(input, game) {
+exports.execute = function(input) {
 	describeStatus(game.main.player.ship);
 };

@@ -1,17 +1,8 @@
-var context = 		require('./../commandContext.js').main;
 var common = 		require('./../../common.js');
 var navigation = 	require('./../../navigation/navigation.js');
+var game =			require('./../../game/game.js');
 
-exports.applies = function(input, game) {
-	if (!context.includes('nav')) return false;
-
-	var words = input.split(' ');
-	return (words.length == 3 
-			&& words[0] == 'warp'
-			&& words[1] == 'to');
-};
-
-exports.execute = function(input, game) {
+exports.execute = function(input) {
     var playerShip = game.main.player.ship;
     var canWarp = navigation.canWarp(playerShip);
     if (!canWarp) {

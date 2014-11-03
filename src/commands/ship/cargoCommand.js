@@ -1,14 +1,9 @@
-var context = require('./../commandContext.js').main;
 var common = require('./../../common.js');
 var cargo = require('../../ship/cargo');
 var _ = require('underscore-node');
+var game =			require('./../../game/game.js');
 
-exports.applies = function(input, game) {
-    if (!context.includes('ship')) return false;
-	return (input == 'cargo');
-};
-
-exports.execute = function(input, game) {
+exports.execute = function(input) {
     var holds = cargo.getCargoholds(game.main.player.ship);
     var items = [];
     _.each(holds, function(hold) {

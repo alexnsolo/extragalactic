@@ -11,7 +11,7 @@ var events = new eventsModule.EventEmitter();
 exports.events = events;
 
 exports.main = {
-	context: 'init'
+	contextName: 'init'
 };
 
 exports.startNew = function() {
