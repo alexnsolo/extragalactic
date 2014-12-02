@@ -14,4 +14,4 @@ A text adventure space sim.
 
 ####Run
 
-1. `node src\app.js`
+1. `node src/app.js`
